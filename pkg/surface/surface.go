@@ -3,8 +3,9 @@ package surface
 import "fmt"
 
 type Surface struct {
+	polygons Polygons
 }
 
-func (s Surface) String() string {
-	return fmt.Sprint("Surface")
+func (surface Surface) String() string {
+	return fmt.Sprintf("%s", surface.polygons)
 }

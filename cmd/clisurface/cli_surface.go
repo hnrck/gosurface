@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	surface := surface.Surface{}
-	fmt.Println(surface)
+	s := surface.Surface{}
+	fmt.Println(s)
 }
