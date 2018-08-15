@@ -7,6 +7,10 @@ import (
 
 type Polygons []Polygon
 
+func (polygons *Polygons) appendPolygon(polygon Polygon) {
+	*polygons = append(*polygons, polygon)
+}
+
 func (polygons Polygons) String() string {
 	var polygonStrings []string
 	for _, polygon := range polygons {
@@ -21,5 +25,5 @@ type Polygon struct {
 }
 
 func (polygon Polygon) String() string {
-	return fmt.Sprintf("%s %s %s %s", polygon.a, polygon.b, polygon.c, polygon.d)
+	return fmt.Sprintf("<polygon points='%s %s %s %s' />", polygon.a, polygon.b, polygon.c, polygon.d)
 }

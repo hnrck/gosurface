@@ -1,6 +1,9 @@
 package surface
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type TwoDimPoint struct {
 	x, y float64
@@ -21,6 +24,15 @@ type ThreeDimPoint struct {
 
 func ThreeDimPointOrigin() ThreeDimPoint {
 	return ThreeDimPoint{TwoDimPointOrigin(), 0.0}
+}
+
+func (point ThreeDimPoint) isoprojection(width, height uint, xyrange, angle float64) TwoDimPoint {
+	xyscale := float64(width) / 2 / xyrange
+	zscale := float64(height) * 0.4
+	return TwoDimPoint{
+		float64(width)/2 + (point.x-point.y)*math.Cos(angle)*xyscale,
+		float64(height)/2 + (point.x+point.y)*math.Sin(angle)*xyscale - point.z*zscale,
+	}
 }
 
 func (point ThreeDimPoint) String() string {
